@@ -37,13 +37,6 @@ class Login extends Component {
         })
     }
 
-    handleShowEys = () => {
-        this.setState({
-
-        })
-
-    }
-
     handleLogin = async () => {
         this.setState({
             errMessage: ''
@@ -79,6 +72,7 @@ class Login extends Component {
     }
 
     render() {
+
         return (
             <div className="login-background">
                 <div className="login-container">
@@ -101,7 +95,7 @@ class Login extends Component {
                                 />
                                 {this.state.password !== '' &&
                                     <i onClick={() => this.handdleShowHidePassword()}
-                                        class={this.state.isShowPassword ? "far fa-eye-slash " : "far fa-eye"}></i>
+                                        className={this.state.isShowPassword ? "far fa-eye-slash " : "far fa-eye"}></i>
                                 }
                             </div>
                         </div>
@@ -140,6 +134,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => {
+
     return {
         navigate: (path) => dispatch(push(path)),
         userLoginSuccess: (userInfo) => dispatch(actions.userLoginSuccess(userInfo)),

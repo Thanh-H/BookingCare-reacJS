@@ -1,0 +1,16 @@
+.Block-input {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 1rem;
+
+    .block-input-child {
+        width: 48%;
+    }
+}
+
+.modal-header button.close {
+    border: none;
+    background: transparent;
+    font-size: 25px;
+    color: white;
+}

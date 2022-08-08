@@ -1,0 +1,49 @@
+#customers {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#customers td,
+#customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#customers tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+#customers tr:hover {
+    background-color: #ddd;
+}
+
+#customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #920fb3;
+    color: white;
+}
+
+
+.btn-action {
+    padding: 8px 20px;
+    cursor: pointer;
+
+
+    &:hover {
+        background-color: #87d323;
+    }
+}
+
+.add-new-user {
+    background-color: #920fb3;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    padding: 4px;
+    border-radius: 4px;
+    margin-left: 4px;
+    color: white;
+}

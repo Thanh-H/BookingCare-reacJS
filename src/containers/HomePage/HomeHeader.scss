@@ -1,0 +1,224 @@
+.home-header-container {
+    height: 60px;
+    width: 100%;
+    padding: 0 00px;
+
+    .home-header-content {
+        margin: 0 auto;
+        width: 1200px;
+        height: 100%;
+        display: flex;
+
+        .left-content {
+            width: 20%;
+            display: flex;
+            align-items: center;
+
+
+            .header-logo {
+                transform: scale(0.5, 0.5);
+                margin-left: -45px;
+                height: 100%;
+                width: 100%;
+                cursor: pointer;
+            }
+
+            i {
+                font-size: 25px;
+                color: gray;
+                cursor: pointer;
+            }
+        }
+
+        .center-content {
+            width: 55%;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            .child-content {
+                .subs-title {
+                    font-weight: 400;
+                    font-size: 12px;
+                }
+            }
+        }
+
+        .right-content {
+            width: 25%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+
+            .support {
+                padding-right: 50px;
+                display: flex;
+                align-items: center;
+                cursor: pointer;
+
+                i {
+                    font-size: 15px;
+                    margin-right: 5px;
+                }
+            }
+
+            .language-vi {
+                cursor: pointer;
+                opacity: 0.2;
+
+                &.action {
+                    color: orange;
+                    opacity: 1;
+                }
+
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+
+
+
+            .language-en {
+                margin: 0 10px;
+                cursor: pointer;
+                opacity: 0.2;
+
+                &.action {
+                    color: red;
+                    opacity: 1;
+                }
+
+                &:hover {
+                    opacity: 0.8;
+                }
+            }
+        }
+    }
+}
+
+.home-header-banner {
+    background-image: url('../../assets/bookingcare-cover-4.jpg');
+    height: 485px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+
+    .content-up {
+        background-image: linear-gradient(rgba(126, 126, 126, 0.25), rgba(255, 255, 255, 0.1));
+        padding-top: 15px;
+        height: 65%;
+
+        .title1 {
+            text-align: center;
+            font-size: 30px;
+            text-shadow: 1px 1px 1px #333;
+            margin-bottom: 5px;
+            color: white;
+            margin-top: 15px;
+
+        }
+
+        .title2 {
+            text-align: center;
+            font-size: 30px;
+            text-shadow: 1px 1px 1px #333;
+            color: white;
+            margin-bottom: 30px;
+        }
+
+        .search {
+            width: fit-content;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+            padding: 10px;
+            border-radius: 25px;
+            background: #f7d800;
+
+            input {
+                height: 30px;
+                width: 360px;
+                background: transparent;
+                border: none;
+                outline: none;
+            }
+        }
+    }
+
+
+
+
+
+    .content-down {
+        background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 1));
+        height: 35%;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+
+        .options {
+            display: flex;
+            text-align: center;
+            gap: 50px;
+            justify-content: center;
+
+            .option-child {
+                width: 100%;
+
+                .icon-child {
+                    background-color: white;
+                    width: 40%;
+                    height: 40%;
+                    padding: 10px;
+                    border-radius: 50%;
+                    margin: 0 auto;
+                    text-align: center;
+
+                    i {
+                        color: #49bce2;
+                        font-size: 20px;
+                    }
+                }
+
+                .text-child {
+                    font-size: 17px;
+                    font-weight: 500;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: #49bce2;
+                    }
+                }
+
+            }
+        }
+    }
+}
+
+// "title1"
+// "title2"
+// ""
+// fas fa-search
+// 
+// "options"
+// option-child
+// icon-child
+// far fa-hospital
+// text-child
+// option-child
+// icon-child
+// fas fa-mobile-alt
+// 
+// option-child
+// icon-child
+// fas fa-procedures
+// text-child
+// option-child
+// icon-child
+// fas fa-flask
+// text-child
+// option-child
+// icon-child
+// fas fa-user-md
+// text-child

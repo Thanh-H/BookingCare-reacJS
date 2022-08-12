@@ -6,14 +6,20 @@ import { FormattedMessage } from 'react-intl'
 import { LANGUAGES } from '../../utils/constant'
 
 import { changeLanguageApp } from '../../store/actions'
-import { lang } from 'moment';
+import { reduce } from 'lodash';
+
 
 class HomeHeader extends Component {
+    state = {
+        changePlaceholder: '1',
+    }
+
     changeLanguage = (dataLanguage) => {
         this.props.changeLanguageAppRedux(dataLanguage)
     }
     render() {
         let { language } = this.props
+        let { changePlaceholder } = this.state
         return (
             <div className='home-header-container'>
                 <div className='home-header-content'>

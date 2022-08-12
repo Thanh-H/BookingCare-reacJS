@@ -45,7 +45,7 @@ class Login extends Component {
             let data = await handleLoginApi(this.state.userName, this.state.password)
             if (data && data.errCode !== 0) {
                 this.setState({
-                    errMessage: data.message
+                    errMessage: data.errMessage
 
                 })
                 console.log('>>>>>data when data && data.errCode !== 0', data)
@@ -62,7 +62,7 @@ class Login extends Component {
             if (error.response) {
                 if (error.response.data) {
                     this.setState({
-                        errMessage: error.response.data.message
+                        errMessage: error.response.data.errMessage
                     })
                 }
             }

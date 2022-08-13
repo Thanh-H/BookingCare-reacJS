@@ -15,8 +15,7 @@ class Header extends Component {
 
     render() {
         const { processLogout, language, userInfo, isLoggedIn } = this.props;
-        console.log(userInfo)
-        console.log(isLoggedIn)
+
         return (
             <div className="header-container">
                 {/* thanh navigator */}
@@ -27,7 +26,7 @@ class Header extends Component {
                 <div className='languages'>
                     <span className='welcome'>
                         <FormattedMessage id="homeheader.welcome" />&nbsp;
-                        {userInfo && userInfo.firstName ? userInfo.firstName : ''} !
+                        {userInfo && userInfo.firstName && userInfo.lastName ? userInfo.firstName + ' ' + userInfo.lastName : ''} !
                     </span>
                     <span className={language === LANGUAGES.VI ? 'language-vi action' : 'language-vi'}
                         onClick={() => this.handleChangeLanguage(LANGUAGES.VI)}

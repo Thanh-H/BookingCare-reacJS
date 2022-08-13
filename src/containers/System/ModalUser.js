@@ -129,7 +129,7 @@ class ModalUser extends Component {
                                     </div>
                                     <div className="form-group col-md-3">
                                         <label >Sex</label>
-                                        <select name="gender" className="form-control"
+                                        <select name="gender" className="form-select"
                                             value={this.state.gender} onChange={(e) => this.handleOnchange(e, 'gender')}>
                                             <option value="1">Male</option>
                                             <option value="0">Female</option>
@@ -137,7 +137,7 @@ class ModalUser extends Component {
                                     </div>
                                     <div className="form-group col-md-3">
                                         <label>Role</label>
-                                        <select name="roleId" className="form-control"
+                                        <select name="roleId" className="form-select"
                                             value={this.state.roleId} onChange={(e) => this.handleOnchange(e, 'roleId')}>
                                             <option value="1">Admin</option>
                                             <option value="2">Doctor</option>

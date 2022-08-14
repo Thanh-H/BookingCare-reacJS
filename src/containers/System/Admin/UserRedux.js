@@ -48,7 +48,7 @@ class UserRedux extends Component {
             let arrPosition = this.props.positionRedux
             this.setState({
                 arrPosition: arrPosition,
-                position: arrPosition && arrPosition.length > 0 ? arrPosition[0].key : ''
+                position: arrPosition && arrPosition.length > 0 ? arrPosition[0].keyMap : ''
             })
         }
 
@@ -56,7 +56,7 @@ class UserRedux extends Component {
             let arrGender = this.props.genderRedux
             this.setState({
                 arrGender: arrGender,
-                gender: arrGender && arrGender.length > 0 ? arrGender[0].key : ''
+                gender: arrGender && arrGender.length > 0 ? arrGender[0].keyMap : ''
             })
         }
 
@@ -64,7 +64,7 @@ class UserRedux extends Component {
             let arrRole = this.props.roleRedux
             this.setState({
                 arrRole: arrRole,
-                role: arrRole && arrRole.length > 0 ? arrRole[0].key : ''
+                role: arrRole && arrRole.length > 0 ? arrRole[0].keyMap : ''
             })
         }
         if (prevProps.userRedux !== this.props.userRedux) {
@@ -79,9 +79,9 @@ class UserRedux extends Component {
                 lastName: '',
                 address: '',
                 phonenumber: '',
-                gender: arrGender && arrGender.length > 0 ? arrGender[0].key : '',
-                role: arrRole && arrRole.length > 0 ? arrRole[0].key : '',
-                position: arrPosition && arrPosition.length > 0 ? arrPosition[0].key : '',
+                gender: arrGender && arrGender.length > 0 ? arrGender[0].keyMap : '',
+                role: arrRole && arrRole.length > 0 ? arrRole[0].keyMap : '',
+                position: arrPosition && arrPosition.length > 0 ? arrPosition[0].keyMap : '',
                 avatar: '',
                 action: CRUD_ACTIONS.CREATE,
                 previewImgURL: ''
@@ -151,9 +151,11 @@ class UserRedux extends Component {
     }
 
     handleEditUser = (user) => {
+        console.log('check user', user)
         let imageBase64 = '';
         if (user.image) {
             imageBase64 = new Buffer(user.image, 'base64').toString('binary');
+
         }
         this.setState({
             email: user.email,
@@ -163,8 +165,8 @@ class UserRedux extends Component {
             address: user.address,
             phonenumber: user.phonenumber,
             gender: user.gender,
-            roleId: user.role,
-            positionId: user.position,
+            role: user.roleId,
+            position: user.positionId,
             avatar: '',
             previewImgURL: imageBase64,
             action: CRUD_ACTIONS.EDIT,
@@ -281,7 +283,7 @@ class UserRedux extends Component {
                                     <select value={gender} className="form-select"
                                         onChange={(event) => this.onChangeInput(event, 'gender')}>
                                         {arrGender && arrGender.length > 0 && arrGender.map((item, index) => {
-                                            return (<option value={item.key} key={index} > {language === LANGUAGES.VI ? item.valueVi : item.valueEn} </option>
+                                            return (<option value={item.keyMap} key={index} > {language === LANGUAGES.VI ? item.valueVi : item.valueEn} </option>
                                             )
                                         })}
                                     </select>
@@ -291,7 +293,7 @@ class UserRedux extends Component {
                                     <select value={position} className="form-select"
                                         onChange={(event) => this.onChangeInput(event, 'position')} >
                                         {arrPosition && arrPosition.length > 0 && arrPosition.map((item, index) => {
-                                            return (<option value={item.key} key={index} > {language === LANGUAGES.VI ? item.valueVi : item.valueEn} </option>
+                                            return (<option value={item.keyMap} key={index} > {language === LANGUAGES.VI ? item.valueVi : item.valueEn} </option>
                                             )
                                         })}
                                     </select>
@@ -301,7 +303,7 @@ class UserRedux extends Component {
                                     <select value={role} className="form-select"
                                         onChange={(event) => this.onChangeInput(event, 'role')} >
                                         {arrRole && arrRole.length > 0 && arrRole.map((item, index) => {
-                                            return (<option value={item.key} key={index} > {language === LANGUAGES.VI ? item.valueVi : item.valueEn} </option>
+                                            return (<option value={item.keyMap} key={index} > {language === LANGUAGES.VI ? item.valueVi : item.valueEn} </option>
                                             )
                                         })}
                                     </select>
@@ -369,7 +371,8 @@ const mapDispatchToProps = dispatch => {
         getRoleStart: () => dispatch(actions.fetchRoleStart()),
 
         createNewUserRedux: (data) => dispatch(actions.createNewUser(data)),
-        editUserRedux: (data) => dispatch(actions.editUserStart(data))
+        editUserRedux: (data) => dispatch(actions.editUserStart(data)),
+
     };
 };
 

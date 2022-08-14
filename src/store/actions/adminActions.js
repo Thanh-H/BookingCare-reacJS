@@ -2,7 +2,7 @@ import actionTypes from "./actionTypes";
 import {
     getAllCodeService, createNewUserService,
     getAllUserService, deleteUserService,
-    editUserService
+    editUserService, getTopDoctorHomeService
 } from '../../services/userService'
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -208,3 +208,26 @@ export const editUserFailed = () => ({
     type: actionTypes.EDIT_USER_FAILED
 })
 
+export const fetchTopDoctor = () => {
+    return async (dispath, getState) => {
+        try {
+            let res = await getTopDoctorHomeService('')
+            if (res && res.errCode === 0) {
+                dispath({
+                    type: actionTypes.FETCH_TOP_DOCTOR_SUCCESS,
+                    dataDoctor: res.data
+                })
+            }
+            else {
+                dispath({
+                    type: actionTypes.FETCH_TOP_DOCTOR_FAILED
+                })
+            }
+        } catch (e) {
+            console.log('FETCH_TOP_DOCTOR_FAILED', e)
+            dispath({
+                type: actionTypes.FETCH_TOP_DOCTOR_FAILED
+            })
+        }
+    }
+}

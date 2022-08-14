@@ -12,7 +12,8 @@
         position: fixed;
         top: 0;
         background-color: white;
-
+        z-index: 100000;
+        box-shadow: 4px 4px 16px rgba(126, 126, 126, 0.25);
 
 
 
@@ -109,7 +110,7 @@
 }
 
 .home-header-banner {
-    margin-top: 65px;
+    margin-top: 60px;
     background-image: url('../../assets/bookingcare-cover-4.jpg');
     height: 485px;
     background-repeat: no-repeat;

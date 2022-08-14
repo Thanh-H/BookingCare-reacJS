@@ -54,6 +54,9 @@
         "doctor": "Doctor",
         "patient": "Patient",
         "upload-img": "Upload Image",
-        "save": "Save user"
+        "save": "Save user",
+        "edit": "save change",
+        "delete": "Delete",
+        "action": "Action"
     }
 }

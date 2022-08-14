@@ -6,7 +6,8 @@ const initialState = {
     isLoadingRole: false,
     genders: [],
     roles: [],
-    positions: []
+    positions: [],
+    users: []
 }
 
 const appReducer = (state = initialState, action) => {
@@ -62,7 +63,17 @@ const appReducer = (state = initialState, action) => {
             return {
                 ...state,
             }
-
+        //GET ALL USER
+        case actionTypes.FETCH_USER_SUCCESS:
+            state.users = action.userData
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_USER_FAILED:
+            state.users = []
+            return {
+                ...state,
+            }
 
         default:
             return state;

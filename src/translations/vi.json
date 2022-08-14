@@ -54,6 +54,9 @@
         "doctor": "Bác sĩ",
         "patient": "Bệnh nhân",
         "upload-img": "Tải ảnh",
-        "save": "Lưu người dùng"
+        "save": "Lưu người dùng",
+        "edit": "Lưu thay đổi",
+        "delete": "Xóa",
+        "action": "Hành động"
     }
 }

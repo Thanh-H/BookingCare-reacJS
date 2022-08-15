@@ -58,5 +58,9 @@
         "edit": "Lưu thay đổi",
         "delete": "Xóa",
         "action": "Hành động"
+    },
+    "homepage": {
+        "outstanding-doctor": "Bác sĩ nổi bật trong tuần",
+        "more-infor": "Xem thêm"
     }
 }

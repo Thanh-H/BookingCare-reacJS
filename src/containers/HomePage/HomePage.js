@@ -18,7 +18,7 @@ class HomePage extends Component {
         const { processLogout } = this.props;
         const settings = {
             dots: false,
-            infinite: true,
+            infinite: false,
             speed: 500,
             slidesToShow: 4,
             slidesToScroll: 1,

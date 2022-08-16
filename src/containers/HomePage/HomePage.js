@@ -15,6 +15,7 @@ import Slider from 'react-slick';
 class HomePage extends Component {
 
     render() {
+
         const { processLogout } = this.props;
         const settings = {
             dots: false,
@@ -22,13 +23,11 @@ class HomePage extends Component {
             speed: 500,
             slidesToShow: 4,
             slidesToScroll: 1,
-
-
         };
 
         return (
             <div>
-                <HomeHeader />
+                <HomeHeader isShowBanner={true} />
                 <Specialty
                     settings={settings} />
                 <MedicalFacility

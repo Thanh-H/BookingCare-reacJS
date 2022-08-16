@@ -2,7 +2,8 @@ import actionTypes from "./actionTypes";
 import {
     getAllCodeService, createNewUserService,
     getAllUserService, deleteUserService,
-    editUserService, getTopDoctorHomeService
+    editUserService, getTopDoctorHomeService, getAllDoctorService,
+    saveDetailDoctorService, getDetailDoctorService
 } from '../../services/userService'
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -231,3 +232,79 @@ export const fetchTopDoctor = () => {
         }
     }
 }
+
+export const fetchAllDoctor = () => {
+    return async (dispath, getState) => {
+        try {
+            let res = await getAllDoctorService()
+            if (res && res.errCode === 0) {
+                dispath({
+                    type: actionTypes.FETCH_ALL_DOCTOR_SUCCESS,
+                    dataAllDoctor: res.data
+
+                })
+            }
+            else {
+                dispath({
+                    type: actionTypes.FETCH_All_DOCTOR_FAILED
+                })
+            }
+        } catch (e) {
+            console.log('FETCH_All_DOCTOR_FAILED', e)
+            dispath({
+                type: actionTypes.FETCH_All_DOCTOR_FAILED
+            })
+        }
+    }
+}
+
+export const saveDetailDoctor = (data) => {
+    return async (dispath, getState) => {
+        try {
+            let res = await saveDetailDoctorService(data)
+            if (res && res.errCode === 0) {
+                toast.success("Save infor detail doctor succeed")
+                dispath({
+                    type: actionTypes.SAVE_DETAIL_DOCTOR_SUCCESS,
+                })
+            }
+            else {
+                toast.warn(res.errMessage)
+                dispath({
+                    type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED
+                })
+            }
+        } catch (e) {
+            toast.warn('Save infor detail doctor failed')
+            console.log('SAVE_DETAIL_DOCTOR_FAILED', e)
+            dispath({
+                type: actionTypes.SAVE_DETAIL_DOCTOR_FAILED
+            })
+        }
+    }
+}
+
+export const fetchDetailDoctor = (id) => {
+    return async (dispath, getState) => {
+        try {
+            let res = await getDetailDoctorService(id)
+            if (res && res.errCode === 0) {
+                dispath({
+                    type: actionTypes.FETCH_DETAIL_DOCTOR_SUCCESS,
+                    dataDetailDoctor: res.data
+                })
+            }
+            else {
+                dispath({
+                    type: actionTypes.FETCH_DETAIL_DOCTOR_FAILED
+                })
+            }
+        } catch (e) {
+            console.log('FETCH_DETAIL_DOCTOR_FAILED', e)
+            dispath({
+                type: actionTypes.FETCH_DETAIL_DOCTOR_FAILED
+            })
+        }
+    }
+}
+

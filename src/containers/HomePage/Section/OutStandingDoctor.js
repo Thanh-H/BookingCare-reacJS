@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { FormattedMessage } from 'react-intl'
 import * as actions from '../../../store/actions'
 import { LANGUAGES } from '../../../utils';
+import { withRouter } from 'react-router';
 
 import Slider from 'react-slick';
 import { times } from 'lodash';
@@ -25,6 +26,10 @@ class OutStandingDoctor extends Component {
     componentDidMount() {
         this.props.loadTopDoctors()
     }
+
+    handleViewDetailDoctor = (doctor) => {
+        this.props.history.push(`/detail-doctor/${doctor.id}`)
+    }
     render() {
         let { arrDoctors } = this.state;
         let { language } = this.props;
@@ -45,10 +50,10 @@ class OutStandingDoctor extends Component {
                                     let imageBase64 = ''
                                     if (item.image) {
                                         imageBase64 = new Buffer(item.image, 'base64').toString('binary');
-                                        console.log('ssssss', imageBase64)
+
                                     }
                                     return (
-                                        <div className='section-customize'>
+                                        <div onClick={() => this.handleViewDetailDoctor(item)} className='section-customize'>
                                             <div className='customize-border'>
                                                 <div className='outer-bg'>
                                                     <div style={{ backgroundImage: `url(${imageBase64})` }} className='bg-image image-outstanding-doctor ' />
@@ -84,4 +89,4 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(OutStandingDoctor));

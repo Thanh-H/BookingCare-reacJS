@@ -7,6 +7,7 @@
         font-size: 20px;
         text-transform: uppercase;
         font-weight: 600;
+        color: #0071ba;
     }
 
     .save-content-doctor {
@@ -16,8 +17,27 @@
         outline: none;
         border: none;
         padding: 5px;
+        background-color: #0071ba;
+        cursor: pointer;
+        width: 100px;
+        color: #fff;
+
+        &:hover {
+            opacity: 0.9;
+        }
+    }
+
+    .edit-content-doctor {
+        margin-top: 20px;
+        margin-bottom: 30px;
+        border-radius: 3px;
+        outline: none;
+        border: none;
+        padding: 5px;
         background-color: orange;
         cursor: pointer;
+        width: 100px;
+        color: #000;
 
         &:hover {
             opacity: 0.9;
@@ -25,16 +45,34 @@
     }
 
     .more-info {
+        margin-top: 18px;
         display: flex;
         gap: 15px;
         padding-bottom: 15px;
 
         .content-left {
             width: 40%;
+            label {
+                font-size: 18px;
+                padding-bottom: 4px;
+            }
         }
 
         .content-right {
             width: 60%;
+            label {
+                font-size: 18px;
+                padding-bottom: 4px;
+            }
         }
     }
+}
+
+.rc-md-editor .rc-md-navigation .button-wrap .button {
+    
+    color: #fff !important;
+}
+.rc-md-editor .rc-md-navigation {
+   
+    background-color: #920fb3 !important;
 }

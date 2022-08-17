@@ -18,3 +18,15 @@
         background-size: contain;
     }
 }
+
+.block-btn{
+    display: flex;
+    gap: 16px;
+    .btn-cancle{
+        border: none;
+        outline: none;
+        background-color: red;
+        width: 100px;
+    }
+}
+

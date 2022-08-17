@@ -104,6 +104,7 @@ class UserRedux extends Component {
     }
 
     openPreviewImage = () => {
+
         if (!this.state.previewImgURL) return;
         this.setState({
             isOpen: true
@@ -204,6 +205,25 @@ class UserRedux extends Component {
 
     }
 
+    handleCanle = () => {
+        let arrRole = this.props.roleRedux
+        let arrGender = this.props.genderRedux
+        let arrPosition = this.props.positionRedux
+        this.setState({
+            email: '',
+            password: '',
+            firstName: '',
+            lastName: '',
+            address: '',
+            phonenumber: '',
+            gender: arrGender && arrGender.length > 0 ? arrGender[0].keyMap : '',
+            role: arrRole && arrRole.length > 0 ? arrRole[0].keyMap : '',
+            position: arrPosition && arrPosition.length > 0 ? arrPosition[0].keyMap : '',
+            avatar: '',
+            action: CRUD_ACTIONS.CREATE,
+            previewImgURL: ''
+        })
+    }
 
     render() {
         let { arrGender, arrPosition, arrRole } = this.state
@@ -218,7 +238,12 @@ class UserRedux extends Component {
                 <div className="text-center title" >User Redux with Thanh</div>
                 <div className='user-redux-body'>
                     <div className='container'>
-                        <div> <FormattedMessage id="manage-user.add" /> </div>
+                        <h4 style={{ color: '#920fb3' }}> {this.state.action === CRUD_ACTIONS.EDIT ?
+                            <FormattedMessage id="manage-user.edit-user" />
+                            :
+                            <FormattedMessage id="manage-user.add" />}
+
+                        </h4>
                         <div> {isLoadingGender === true ? 'Loading Gender' : ''} </div>
                         <form >
                             <div className="form-row">
@@ -320,14 +345,23 @@ class UserRedux extends Component {
                                 </div>
                             </div>
                         </form>
-                        <button
-                            onClick={() => this.handleSaveUser()}
-                            className={this.state.action === CRUD_ACTIONS.EDIT ? 'col-md-2 btn btn-warning ' : 'col-md-2 btn btn-primary '}>
-                            {this.state.action === CRUD_ACTIONS.EDIT ?
-                                <FormattedMessage id="manage-user.edit" />
-                                :
-                                <FormattedMessage id="manage-user.save" />}
-                        </button>
+
+                        <div className='block-btn'>
+                            <button
+                                onClick={() => this.handleSaveUser()}
+                                className={this.state.action === CRUD_ACTIONS.EDIT ? 'col-md-2 btn btn-warning ' : 'col-md-2 btn btn-primary '}>
+                                {this.state.action === CRUD_ACTIONS.EDIT ?
+                                    <FormattedMessage id="manage-user.edit" />
+                                    :
+                                    <FormattedMessage id="manage-user.save" />}
+                            </button>
+
+                            {this.state.action === CRUD_ACTIONS.EDIT &&
+                                <button className='btn-cancle' onClick={this.handleCanle}>
+                                    <FormattedMessage id="manage-user.cancel" />
+                                </button>}
+                        </div>
+
                         <div className=' '>
                             <TableManageUser
                                 handleEditUserFromParent={this.handleEditUser} />

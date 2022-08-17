@@ -38,6 +38,7 @@
     },
     "manage-user": {
         "add": "Thêm mới người dùng",
+        "edit-user": "Chỉnh sửa người dùng",
         "email": "Email",
         "password": "Mật khẩu",
         "first-name": "Tên",
@@ -56,11 +57,19 @@
         "upload-img": "Tải ảnh",
         "save": "Lưu người dùng",
         "edit": "Lưu thay đổi",
+        "cancel": "Hủy",
         "delete": "Xóa",
         "action": "Hành động"
     },
     "homepage": {
         "outstanding-doctor": "Bác sĩ nổi bật trong tuần",
         "more-infor": "Xem thêm"
+    },
+    "manage-doctor": {
+        "select-doctor": "Chọn bác sĩ",
+        "create-doctor-infor": "Tạo thêm thông tin bác sĩ",
+        "introductory-information": "Thông tin giới thiệu",
+        "save": "Lưu thông tin",
+        "edit": "Lưu thay đổi"
     }
 }

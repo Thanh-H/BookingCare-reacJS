@@ -23,12 +23,15 @@
                 margin-bottom: 12px;
             }
 
-            p {}
+            p {
+                // text-align: justify;
+            }
         }
     }
 
     .detail-intro-doctor {
         background-color: #f5f5f5;
+        border-top: 1px solid #ccc;
 
         div {
             margin: 0 100px;

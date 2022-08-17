@@ -38,6 +38,7 @@
     },
     "manage-user": {
         "add": "Add a new user",
+        "edit-user": "Edit User",
         "email": "Email",
         "password": "Password",
         "first-name": "First name",
@@ -56,11 +57,19 @@
         "upload-img": "Upload Image",
         "save": "Save user",
         "edit": "save change",
+        "cancel": "cancle",
         "delete": "Delete",
         "action": "Action"
     },
     "homepage": {
         "outstanding-doctor": "Last week's featured doctor",
         "more-infor": "More Infor"
+    },
+    "manage-doctor": {
+        "select-doctor": "Select doctor",
+        "create-doctor-infor": "create doctor information",
+        "introductory-information": "Introductory information",
+        "save": "Save",
+        "edit": "save change"
     }
 }

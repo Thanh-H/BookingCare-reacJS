@@ -52,13 +52,7 @@ class ManageDoctor extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (prevProps.doctorsRedux !== this.props.doctorsRedux) {
-            let dataOption = this.buildDataInputSelect(this.props.doctorsRedux)
-            this.setState({
-                listDoctor: dataOption
-            })
-        }
-        if (prevProps.language !== this.props.language) {
+        if (prevProps.doctorsRedux !== this.props.doctorsRedux || prevProps.language !== this.props.language) {
             let dataOption = this.buildDataInputSelect(this.props.doctorsRedux)
             this.setState({
                 listDoctor: dataOption

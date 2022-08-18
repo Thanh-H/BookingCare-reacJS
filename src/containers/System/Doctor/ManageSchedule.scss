@@ -1,0 +1,25 @@
+.manage-schedule-container {
+    .m-s-title {
+        text-align: center;
+        margin: 15px 0;
+        font-size: 20px;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: #0071ba;
+    }
+
+    .schedule-time-container {
+        margin: 24px 0;
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+
+        div {
+            border: 1px solid #000;
+            border-radius: 3px;
+            padding: 4px 4px;
+            cursor: pointer;
+
+        }
+    }
+}

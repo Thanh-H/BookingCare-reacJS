@@ -57,6 +57,7 @@ export const fetchPositionStart = () => {
         }
     }
 }
+
 export const fetchPositionSuccess = (positionData) => ({
     type: actionTypes.FETCH_POSITION_SUCCESS,
     positionData: positionData
@@ -308,3 +309,27 @@ export const fetchDetailDoctor = (id) => {
     }
 }
 
+export const fetchScheduleTime = () => {
+    return async (dispath, getState) => {
+        try {
+            let res = await getAllCodeService('TIME')
+            if (res && res.errCode === 0) {
+                dispath({
+                    type: actionTypes.FETCH_SCHEDULE_TIME_SUCCESS,
+                    scheduleTimeData: res.data
+                })
+            }
+            else {
+                dispath({
+                    type: actionTypes.FETCH_SCHEDULE_TIME_FAILED
+                })
+            }
+        } catch (error) {
+
+            console.log('FETCH_SCHEDULE_TIME_FAILED', error)
+            dispath({
+                type: actionTypes.FETCH_SCHEDULE_TIME_FAILED
+            })
+        }
+    }
+}

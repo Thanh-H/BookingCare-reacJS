@@ -10,7 +10,8 @@ const initialState = {
     users: [],
     topDoctors: [],
     allDoctors: [],
-    detailDoctor: []
+    detailDoctor: [],
+    scheduleTime: []
 }
 
 const appReducer = (state = initialState, action) => {
@@ -110,6 +111,16 @@ const appReducer = (state = initialState, action) => {
             }
         case actionTypes.FETCH_DETAIL_DOCTOR_FAILED:
             state.detailDoctor = [];
+
+        //FETCH SCHEDULE TIME
+        case actionTypes.FETCH_SCHEDULE_TIME_SUCCESS:
+            state.scheduleTime = action.scheduleTimeData
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_SCHEDULE_TIME_FAILED:
+            state.scheduleTime = []
+            return { ...state, }
 
         default:
             return state;

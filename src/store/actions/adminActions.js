@@ -3,7 +3,8 @@ import {
     getAllCodeService, createNewUserService,
     getAllUserService, deleteUserService,
     editUserService, getTopDoctorHomeService, getAllDoctorService,
-    saveDetailDoctorService, getDetailDoctorService
+    saveDetailDoctorService, getDetailDoctorService, saveBulkScheduleDoctorSevice,
+    getScheduleDoctorByDateSevice
 } from '../../services/userService'
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -242,7 +243,6 @@ export const fetchAllDoctor = () => {
                 dispath({
                     type: actionTypes.FETCH_ALL_DOCTOR_SUCCESS,
                     dataAllDoctor: res.data
-
                 })
             }
             else {
@@ -329,6 +329,59 @@ export const fetchScheduleTime = () => {
             console.log('FETCH_SCHEDULE_TIME_FAILED', error)
             dispath({
                 type: actionTypes.FETCH_SCHEDULE_TIME_FAILED
+            })
+        }
+    }
+}
+
+export const saveScheduleDoctor = (data) => {
+    return async (dispath, getState) => {
+        try {
+            let res = await saveBulkScheduleDoctorSevice(data)
+            if (res && res.errCode === 0) {
+                toast.success('Save schedule doctor succeed !')
+                return res
+                dispath({
+                    type: actionTypes.SAVE_SCHEDULE_DOCTOR_SUCCESS,
+                })
+            }
+            else {
+                toast.error("save schedule doctor failed !")
+                dispath({
+                    type: actionTypes.SAVE_SCHEDULE_DOCTOR_FAILED
+                })
+            }
+        } catch (error) {
+
+            console.log('SAVE_SCHEDULE_DOCTOR_FAILED', error)
+            dispath({
+                type: actionTypes.SAVE_SCHEDULE_DOCTOR_FAILED
+            })
+        }
+    }
+}
+
+export const getScheduleDoctorByDate = (doctorId, date) => {
+    return async (dispath, getState) => {
+        try {
+            let res = await getScheduleDoctorByDateSevice(doctorId, date)
+            if (res && res.errCode === 0) {
+                dispath({
+                    type: actionTypes.FETCH_SCHEDULE_DOCTOR_BY_DATE_SUCCESS,
+                    ScheduleOfADoctorByDate: res.data
+                })
+            }
+            else {
+
+                dispath({
+                    type: actionTypes.FETCH_SCHEDULE_DOCTOR_BY_DATE_FAILED
+                })
+            }
+        } catch (error) {
+
+            console.log('FETCH_SCHEDULE_DOCTOR_BY_DATE_FAILED', error)
+            dispath({
+                type: actionTypes.FETCH_SCHEDULE_DOCTOR_BY_DATE_FAILED
             })
         }
     }

@@ -11,7 +11,8 @@ const initialState = {
     topDoctors: [],
     allDoctors: [],
     detailDoctor: [],
-    scheduleTime: []
+    scheduleTime: [],
+    ScheduleOfADoctorByDate: []
 }
 
 const appReducer = (state = initialState, action) => {
@@ -119,6 +120,16 @@ const appReducer = (state = initialState, action) => {
                 ...state,
             }
         case actionTypes.FETCH_SCHEDULE_TIME_FAILED:
+            state.scheduleTime = []
+            return { ...state, }
+
+        //FETCH SCHEDULE OF A DOCTOR BY DATE 
+        case actionTypes.FETCH_SCHEDULE_DOCTOR_BY_DATE_SUCCESS:
+            state.ScheduleOfADoctorByDate = action.ScheduleOfADoctorByDate
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_SCHEDULE_DOCTOR_BY_DATE_FAILED:
             state.scheduleTime = []
             return { ...state, }
 

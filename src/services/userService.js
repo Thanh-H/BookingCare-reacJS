@@ -1,4 +1,5 @@
 import axios from '../axios'
+
 const handleLoginApi = (userEmail, userPassword) => {
     return axios.post('/api/login', { email: userEmail, password: userPassword })
 }
@@ -46,8 +47,17 @@ const saveDetailDoctorService = (data) => {
 const getDetailDoctorService = (id) => {
     return axios.get(`/api/get-detail-doctor-by-id?id=${id}`)
 }
+
+const saveBulkScheduleDoctorSevice = (data) => {
+    return axios.post(`/api/bulk-create-schedule`, data)
+}
+
+const getScheduleDoctorByDateSevice = (doctorId, date) => {
+    return axios.get(`/api/get-schedule-doctor-by-date?doctorId=${doctorId}&date=${date}`)
+}
 export {
     handleLoginApi, getAllUserService, createNewUserService, deleteUserService,
     editUserService, getAllCodeService, getTopDoctorHomeService, getAllDoctorService,
-    saveDetailDoctorService, getDetailDoctorService
+    saveDetailDoctorService, getDetailDoctorService, saveBulkScheduleDoctorSevice,
+    getScheduleDoctorByDateSevice
 }

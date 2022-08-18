@@ -6,6 +6,7 @@ import * as actions from '../../../store/actions'
 import { LANGUAGES } from '../../../utils';
 import HomeHeader from '../../HomePage/HomeHeader';
 import HomeFooter from '../../HomePage/HomeFooter';
+import DoctorSchedule from './DoctorSchedule';
 import './DetailDoctor.scss'
 class DetailDoctor extends Component {
     constructor(props) {
@@ -43,6 +44,16 @@ class DetailDoctor extends Component {
                                 </p>}
                         </div>
                     </div>
+
+                    <div className='schedule-doctor' >
+                        <div className='conten-left'>
+                            <DoctorSchedule
+                                id={this.props.match.params.id} />
+                        </div>
+                        <div className='conten-right'></div>
+
+                    </div>
+
                     <div className='detail-intro-doctor'> {detailDoctorRedux && detailDoctorRedux.Markdown && detailDoctorRedux.Markdown.contentHTML &&
                         <div dangerouslySetInnerHTML={{ __html: detailDoctorRedux.Markdown.contentHTML }}></div>}
                     </div>

@@ -16,7 +16,7 @@ class ManageSchedule extends Component {
             listDoctor: [],
             selectedDoctor: "",
             curenDate: '',
-            rangeTime: []
+            rangeTime: [],
         }
     }
 
@@ -45,7 +45,7 @@ class ManageSchedule extends Component {
                 )
             }
             this.setState({
-                rangeTime: data
+                rangeTime: data,
             })
         }
 
@@ -65,7 +65,6 @@ class ManageSchedule extends Component {
 
         }
         return result
-
     }
 
     handleChangeSelect = (selectedDoctor) => {
@@ -86,10 +85,13 @@ class ManageSchedule extends Component {
         this.setState({ rangeTime: rangeTime })
     }
 
-    handleSaveSchedule() {
+    async handleSaveSchedule() {
         let { selectedDoctor, curenDate, rangeTime } = this.state
         let result = []
-        let formatedDate = moment(curenDate).format(dateFormat.SEND_TO_SERVER)
+        let formatedDate = new Date(curenDate).getTime();
+        if (!selectedDoctor || !curenDate || !rangeTime) {
+            toast.error('Missing parameter')
+        }
         if (rangeTime && rangeTime.length > 0) {
             let selectTime = rangeTime.filter(item => {
                 return (item.isSlected === true)
@@ -99,19 +101,36 @@ class ManageSchedule extends Component {
                     let object = {};
                     object.doctorId = selectedDoctor.value
                     object.timeType = item.keyMap
-                    object.date = formatedDate
+                    object.date = formatedDate + ''
                     result.push(object)
                 })
             } else {
-                toast.error('Invalid section time')
+                return
             }
         }
-        console.log(result)
+        if (result && selectedDoctor && formatedDate) {
+            let res = await this.props.saveScheduleDoctor({
+                arrSchedule: result,
+                doctorId: selectedDoctor.value,
+                formatedDate: formatedDate
+            })
+            if (res.errCode === 0) {
+                this.setState({
+                    selectedDoctor: "",
+                    curenDate: '',
+                    rangeTime: this.props.AllScheduleTime
+                })
+            }
+
+        }
+
     }
 
     render() {
         let { rangeTime } = this.state
         let { language } = this.props
+        let date = new Date();
+        date.setDate(date.getDate() - 1);
         return (
             <div className='manage-schedule-container'>
                 <div className='m-s-title'>
@@ -133,7 +152,7 @@ class ManageSchedule extends Component {
                                 value={this.state.curenDate}
                                 onChange={this.handleOnchangeDatePicker}
                                 className='form-control'
-                                minDate={new (Date)}
+                                minDate={date}
                             />
                         </div>
                         <div className='col-12 schedule-time-container'>
@@ -166,7 +185,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
     return {
         fetchAllDoctor: () => dispatch(actions.fetchAllDoctor()),
-        fetchScheduleTime: () => dispatch(actions.fetchScheduleTime())
+        fetchScheduleTime: () => dispatch(actions.fetchScheduleTime()),
+        saveScheduleDoctor: (data) => dispatch(actions.saveScheduleDoctor(data))
     };
 };
 

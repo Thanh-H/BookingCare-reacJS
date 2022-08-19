@@ -44,7 +44,7 @@
         }
     }
 
-    .more-info {
+    .more-infor {
         margin-top: 18px;
         display: flex;
         gap: 15px;
@@ -52,27 +52,50 @@
 
         .content-left {
             width: 40%;
+
             label {
-                font-size: 18px;
+                font-size: 14px;
                 padding-bottom: 4px;
+                font-weight: bold;
             }
         }
 
         .content-right {
             width: 60%;
+
             label {
-                font-size: 18px;
+                font-size: 14px;
                 padding-bottom: 4px;
+                font-weight: bold;
             }
         }
+    }
+
+    .more-infor-extra {
+
+        div {
+            label {
+
+                font-size: 14px;
+                padding-bottom: 4px;
+                font-weight: bold;
+            }
+        }
+
+
+    }
+
+    .manage-doctor-editor {
+        margin-top: 16px;
     }
 }
 
 .rc-md-editor .rc-md-navigation .button-wrap .button {
-    
+
     color: #fff !important;
 }
+
 .rc-md-editor .rc-md-navigation {
-   
+
     background-color: #920fb3 !important;
 }

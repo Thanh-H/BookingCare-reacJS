@@ -15,15 +15,18 @@ class ManageSchedule extends Component {
         this.state = {
             listDoctor: [],
             selectedDoctor: "",
-            curenDate: '',
+            curenDate: new Date(),
             rangeTime: [],
+
         }
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         this.props.fetchAllDoctor()
-        this.props.fetchScheduleTime()
+        await this.props.fetchScheduleTime()
+        console.log('check range time start', this.props.AllScheduleTime)
     }
+
 
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.doctorsRedux !== this.props.doctorsRedux ||
@@ -114,11 +117,16 @@ class ManageSchedule extends Component {
                 doctorId: selectedDoctor.value,
                 formatedDate: formatedDate
             })
+            // re render state 
             if (res.errCode === 0) {
+                let coppyRangeTime = this.state.rangeTime
+                coppyRangeTime.map(item => {
+                    item.isSlected = false
+                })
                 this.setState({
                     selectedDoctor: "",
-                    curenDate: '',
-                    rangeTime: this.props.AllScheduleTime
+                    curenDate: new Date(),
+                    rangeTime: coppyRangeTime
                 })
             }
 
@@ -129,6 +137,7 @@ class ManageSchedule extends Component {
     render() {
         let { rangeTime } = this.state
         let { language } = this.props
+
         let date = new Date();
         date.setDate(date.getDate() - 1);
         return (

@@ -12,7 +12,9 @@ const initialState = {
     allDoctors: [],
     detailDoctor: [],
     scheduleTime: [],
-    ScheduleOfADoctorByDate: []
+    scheduleOfADoctorByDate: [],
+
+    allRequiredDoctorInfor: {}
 }
 
 const appReducer = (state = initialState, action) => {
@@ -125,13 +127,26 @@ const appReducer = (state = initialState, action) => {
 
         //FETCH SCHEDULE OF A DOCTOR BY DATE 
         case actionTypes.FETCH_SCHEDULE_DOCTOR_BY_DATE_SUCCESS:
-            state.ScheduleOfADoctorByDate = action.ScheduleOfADoctorByDate
+            state.scheduleOfADoctorByDate = action.scheduleOfADoctorByDate
             return {
                 ...state,
             }
         case actionTypes.FETCH_SCHEDULE_DOCTOR_BY_DATE_FAILED:
             state.scheduleTime = []
             return { ...state, }
+
+        // FETCH REQUIRED DOCTOR INFOR     
+        case actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_SUCCESS:
+            state.allRequiredDoctorInfor = action.dataDoctorRequired
+            console.log('check all required', state.allRequiredDoctorInfor)
+            return {
+                ...state,
+            }
+        case actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_FAILED:
+            state.allRequiredDoctorInfor = {}
+            return {
+                ...state,
+            }
 
         default:
             return state;

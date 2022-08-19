@@ -73,12 +73,26 @@
         "create-doctor-infor": "Tạo thêm thông tin bác sĩ",
         "introductory-information": "Thông tin giới thiệu",
         "save": "Lưu thông tin",
-        "edit": "Lưu thay đổi"
+        "edit": "Lưu thay đổi",
+        "choose-price": "Giá",
+        "chose-payment": "Phương thức thanh toán",
+        "chose-province": "Tỉnh thành",
+        "name-clinic": "Tên Phòng khám",
+        "address-clinic": "Địa chỉ phòng khám",
+        "note": "Chú thích"
     },
     "manage-schedule": {
         "select-doctor": "Chọn bác sĩ",
         "title": "Quản lý kế hoạch khám bệnh của bác sĩ",
         "select-date": "Chọn ngày",
         "save": "Lưu thông tin"
+    },
+    "patient": {
+        "detail-doctor": {
+            "schedule": "lịch khám",
+            "no-schedule": "Bác sĩ không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác !",
+            "choose": "Chọn",
+            "and-book-free": "và đặt (Phí đặt lịch 0đ ) "
+        }
     }
 }

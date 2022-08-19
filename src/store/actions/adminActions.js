@@ -368,7 +368,7 @@ export const getScheduleDoctorByDate = (doctorId, date) => {
             if (res && res.errCode === 0) {
                 dispath({
                     type: actionTypes.FETCH_SCHEDULE_DOCTOR_BY_DATE_SUCCESS,
-                    ScheduleOfADoctorByDate: res.data
+                    scheduleOfADoctorByDate: res.data
                 })
             }
             else {
@@ -386,3 +386,40 @@ export const getScheduleDoctorByDate = (doctorId, date) => {
         }
     }
 }
+
+export const fetchRequiredDoctorInfor = () => {
+    return async (dispath, getState) => {
+        try {
+            dispath({
+                type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_START
+            })
+            let resPrice = await getAllCodeService('PRICE')
+            let resPayment = await getAllCodeService('PAYMENT')
+            let resProvince = await getAllCodeService('PROVINCE')
+            let dataDoctorRequired = {
+                price: resPrice.data,
+                payment: resPayment.data,
+                province: resProvince.data
+            }
+            if (resPrice && resPrice.errCode === 0 && resPayment && resPayment.errCode == 0
+                && resProvince && resProvince.errCode === 0) {
+                dispath(fetchRequiredDoctorInforSuccess(dataDoctorRequired))
+            }
+            else {
+                dispath(fetchRequiredDoctorInforFailed)
+            }
+        } catch (error) {
+            dispath(fetchRequiredDoctorInforFailed)
+
+        }
+    }
+}
+export const fetchRequiredDoctorInforSuccess = (dataDoctorRequired) => ({
+    type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_SUCCESS,
+    dataDoctorRequired: dataDoctorRequired
+})
+
+export const fetchRequiredDoctorInforFailed = () => ({
+    type: actionTypes.FETCH_REQUIRED_DOCTOR_INFOR_FAILED,
+
+})

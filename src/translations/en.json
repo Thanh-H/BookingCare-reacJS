@@ -69,16 +69,30 @@
         "more-infor": "More Infor"
     },
     "manage-doctor": {
-        "select-doctor": "Select doctor",
+        "select-doctor": "Choose doctor",
         "create-doctor-infor": "create doctor information",
         "introductory-information": "Introductory information",
         "save": "Save",
-        "edit": "save change"
+        "edit": "save change",
+        "choose-price": "Price",
+        "chose-payment": "Payment",
+        "chose-province": "Province",
+        "name-clinic": "Clinic's name ",
+        "address-clinic": "Clinic's address ",
+        "note": "Note"
     },
     "manage-schedule": {
         "select-doctor": "Select doctor",
         "title": "Manage the doctor's examination plan",
         "select-date": "Select date",
         "save": "Save"
+    },
+    "patient": {
+        "detail-doctor": {
+            "schedule": "Schedule",
+            "no-schedule": "The doctor does not have an appointment during this time, please choose a different time !",
+            "choose": "Choose",
+            "and-book-free": "and book free "
+        }
     }
 }

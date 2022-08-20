@@ -27,7 +27,6 @@ class ScheduleDoctor extends Component {
     async componentDidMount() {
         let { language } = this.props
         let startLoadingAllday = this.setArrday(language)
-        console.log('check allday when loading', startLoadingAllday)
         await this.props.getScheduleDoctorByDate(this.props.idFromParent, startLoadingAllday[0].value)
         this.setState({ allAvalableTime: this.props.scheduleOfADoctorByDate })
     }
@@ -59,7 +58,7 @@ class ScheduleDoctor extends Component {
     }
 
     render() {
-        console.log("check schedule by redux", this.props.scheduleOfADoctorByDate)
+
         let { alldays, allAvalableTime } = this.state
         let { language } = this.props
         return (

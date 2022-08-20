@@ -93,6 +93,13 @@
             "no-schedule": "The doctor does not have an appointment during this time, please choose a different time !",
             "choose": "Choose",
             "and-book-free": "and book free "
+        },
+        "extra-infor-doctor": {
+            "text-address": "Address of examination",
+            "price": "Examination price",
+            "detail": "See details",
+            "payment": "The patient can pay the coast in the form of:",
+            "hide-price": "Hide price list"
         }
     }
 }

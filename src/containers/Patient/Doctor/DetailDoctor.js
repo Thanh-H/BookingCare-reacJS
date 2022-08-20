@@ -8,6 +8,7 @@ import HomeHeader from '../../HomePage/HomeHeader';
 import HomeFooter from '../../HomePage/HomeFooter';
 import DoctorSchedule from './DoctorSchedule';
 import './DetailDoctor.scss'
+import DoctorExtraInfor from './DoctorExtraInfor';
 class DetailDoctor extends Component {
     constructor(props) {
         super(props)
@@ -50,7 +51,10 @@ class DetailDoctor extends Component {
                             <DoctorSchedule
                                 idFromParent={this.props.match.params.id} />
                         </div>
-                        <div className='content-right'></div>
+                        <div className='content-right'>
+                            <DoctorExtraInfor
+                                idFromParent={this.props.match.params.id} />
+                        </div>
 
                     </div>
 

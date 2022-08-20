@@ -148,22 +148,58 @@ class ManageDoctor extends Component {
         await this.props.fetchDetailDoctor(onChangeSelected.value)
         let data = this.props.detailDoctorRedux
         if (data && data.Markdown && data.Markdown.contentHTML) {
+            let addressClinic, nameClinic, note, selectedPrice, selectedPayment, selectedProvince
+            if (data.Doctor_infor) {
+                addressClinic = data.Doctor_infor.addressClinic
+                nameClinic = data.Doctor_infor.nameClinic
+                note = data.Doctor_infor.note
+                let priceId = data.Doctor_infor.priceId
+                let paymentId = data.Doctor_infor.paymentId
+                let provinceId = data.Doctor_infor.provinceId
+                selectedPrice = this.state.listPrice.find((item) => {
+                    return (item && item.value === priceId)
+                })
+                selectedProvince = this.state.listProvince.find((item) => {
+                    return (item && item.value === provinceId)
+                })
+                selectedPayment = this.state.listPayment.find((item) => {
+                    return (item && item.value === paymentId)
+                })
+            }
+            // else {
+            //     this.setState({
+            //         selectedPrice: '',
+            //         selectedProvince: '',
+            //         selectedPayment: '',
+            //        
+            //     })
+            // }
             this.setState({
                 hasOldData: true,
                 contentMarkdown: data.Markdown.contentMarkdown,
                 contentHTML: data.Markdown.contentHTML,
                 description: data.Markdown.description,
+
+                selectedPrice: selectedPrice,
+                selectedProvince: selectedProvince,
+                selectedPayment: selectedPayment,
+                addressClinic: addressClinic,
+                nameClinic: nameClinic,
+                note: note
             })
         }
-        // else {
-        //     this.setState({
-        //         hasOldData: false,
-        //         contentMarkdown: '',
-        //         contentHTML: '',
-        //         selectedDoctor: '',
-        //         description: '',
-        //     })
-        // }
+        else {
+            if (id === 'selectedDoctor')
+                this.setState({
+                    hasOldData: false,
+                    contentMarkdown: '',
+                    contentHTML: '',
+                    description: '',
+                    addressClinic: '',
+                    nameClinic: '',
+                    note: '',
+                })
+        }
         let copyState = { ...this.state }
         copyState[id.name] = onChangeSelected
         this.setState({
@@ -179,7 +215,7 @@ class ManageDoctor extends Component {
         })
     }
     render() {
-        console.log('check state', this.state)
+
         return (
             <>
                 <div className='manage-doctor-container'>

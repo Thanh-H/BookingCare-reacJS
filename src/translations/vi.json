@@ -93,6 +93,13 @@
             "no-schedule": "Bác sĩ không có lịch hẹn trong thời gian này, vui lòng chọn thời gian khác !",
             "choose": "Chọn",
             "and-book-free": "và đặt (Phí đặt lịch 0đ ) "
+        },
+        "extra-infor-doctor": {
+            "text-address": "Địa chỉ khám",
+            "price": "Giá khám:",
+            "detail": "Xem chi tiết",
+            "payment": "Người bệnh có thể thanh toán bằng hình thức:",
+            "hide-price": "Ẩn bảng giá"
         }
     }
 }

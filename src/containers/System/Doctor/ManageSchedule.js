@@ -24,7 +24,6 @@ class ManageSchedule extends Component {
     async componentDidMount() {
         this.props.fetchAllDoctor()
         await this.props.fetchScheduleTime()
-        console.log('check range time start', this.props.AllScheduleTime)
     }
 
 

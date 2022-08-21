@@ -100,6 +100,20 @@
             "detail": "See details",
             "payment": "The patient can pay the coast in the form of:",
             "hide-price": "Hide price list"
+        },
+        "booking-modal": {
+            "title": "Information to book a medical appointment",
+            "fullName": "Fullname",
+            "phonenumber": "Phone number",
+            "email": "Email",
+            "address": "Address",
+            "reason": "Reasons for medical examination",
+            "birthday": "Date of birth",
+            "gender": "Genders",
+            "btnConfirm": "Confirm",
+            "btnCancel": "Cancel",
+            "priceBooking": "Free booking",
+            "price": "Price: "
         }
     }
 }

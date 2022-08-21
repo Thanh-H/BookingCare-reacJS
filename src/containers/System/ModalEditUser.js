@@ -53,7 +53,6 @@ class ModalEditUser extends Component {
     handleOnchange = (e, id) => {
 
         let coppyState = { ...this.state }
-        console.log("coppy", coppyState)
         coppyState[id] = e.target.value
         this.setState({
             ...coppyState

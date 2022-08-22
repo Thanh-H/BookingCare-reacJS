@@ -12,6 +12,7 @@ import Select from 'react-select'
 import { postPatientBookAppointment } from '../../../services/userService'
 import { toast } from 'react-toastify'
 import { LANGUAGES } from '../../../utils';
+import moment from 'moment';
 
 
 
@@ -29,7 +30,7 @@ class BookingModal extends Component {
             doctorId: '',
             genders: '',
             timeType: '',
-
+            isComfirmLoading: false
         }
     }
 
@@ -86,19 +87,53 @@ class BookingModal extends Component {
             selectedGender: selectedOption
         })
     }
+    buildTimeBooking = (dataTime) => {
+        let { language } = this.props;
+        let timeString = ''
+        if (dataTime && !_.isEmpty(dataTime)) {
+            let time = language === LANGUAGES.VI ?
+                dataTime.timeTypeData.valueVi : dataTime.timeTypeData.valueEn
+            let date = language === LANGUAGES.VI ?
+                moment.unix(+dataTime.date / 1000).format('dddd - DD/MM/YYYY')
+                :
+                moment.unix(+dataTime.date / 1000).locale('en').format('dddd - DD/MM/YYYY')
+            timeString = `${time + ' ' + date}`
+        }
+        return timeString
+    }
+
+    buildDoctorName = (dataTime) => {
+        let { language } = this.props;
+        let name = ''
+        if (dataTime && dataTime.doctorData) {
+            name = language === LANGUAGES.VI ?
+                `${dataTime.doctorData.lastName + ' ' + dataTime.doctorData.firstName}`
+                :
+                `${dataTime.doctorData.firstName + ' ' + dataTime.doctorData.lastName}`
+
+        }
+        return name
+    }
 
     handleComfirmBooking = async () => {
-        let arrCheckInput = ['fullName', 'phonenumber', 'email', 'address', 'reason', 'birthday', 'selectedGender', 'doctorId', 'genders', 'timeType']
+
+        let { dataTime } = this.props
+        let arrCheckInput = ['fullName', 'phonenumber', 'email', 'address', 'reason', 'birthday', 'selectedGender', 'genders', 'timeType']
         let isValid = true
         for (let i = 0; i < arrCheckInput.length; i++) {
             if (!this.state[arrCheckInput[i]]) {
                 isValid = false
-                toast.success('Missing' + ' ' + arrCheckInput[i])
+                toast.warn('Missing' + ' ' + arrCheckInput[i])
                 break
             }
         }
         if (isValid === true) {
+            this.setState({
+                isComfirmLoading: true
+            })
             let date = new Date(this.state.birthday).getTime();
+            let doctorName = this.buildDoctorName(dataTime)
+            let timeString = this.buildTimeBooking(dataTime)
             let res = await postPatientBookAppointment({
                 fullName: this.state.fullName,
                 phonenumber: this.state.phonenumber,
@@ -109,26 +144,34 @@ class BookingModal extends Component {
                 selectedGender: this.state.selectedGender,
                 doctorId: this.state.doctorId,
                 genders: this.state.genders,
-                timeType: this.state.timeType
+                timeType: this.state.timeType,
+                language: this.props.language,
+                doctorName: doctorName,
+                timeString: timeString
             })
 
             if (res && res.errCode === 0) {
                 toast.success('Booking a new appointment succeed')
+                this.props.closeBookingclose()
+                this.setState({
+                    isComfirmLoading: false
+                })
             } else {
                 toast.error('Booking a new appoitment failed')
             }
         }
     }
 
-
+    handleCloseModal = () => {
+        this.props.closeBookingclose()
+        this.setState({
+            isComfirmLoading: false
+        })
+    }
     render() {
-        let { fullName, phonenumber, email, address, reason, birthday, selectedGender, genders, timeType } = this.state
-        console.log('check state xxx', this.state)
+        let { isComfirmLoading, fullName, phonenumber, email, address, reason, birthday, doctorId, selectedGender, genders, timeType } = this.state
         let { isOpenModalBooking, closeBookingclose, dataTime } = this.props
-        let doctorId = ''
-        if (dataTime && !_.isEmpty(dataTime)) {
-            doctorId = dataTime.doctorId
-        }
+
         return (
             <Modal
                 isOpen={isOpenModalBooking}
@@ -208,11 +251,14 @@ class BookingModal extends Component {
                         </div>
                     </div>
                     <div className="booking-modal-footer">
-                        <button onClick={() => this.handleComfirmBooking()}
-                            className="btn-booking-confirm"
-                        > <FormattedMessage id='patient.booking-modal.btnConfirm' /> </button>
+                        {isComfirmLoading === true ?
+                            <i className=" is-comfrim-loading fas fa-hourglass-half"></i>
+                            :
+                            <button onClick={() => this.handleComfirmBooking()}
+                                className="btn-booking-confirm"
+                            > <FormattedMessage id='patient.booking-modal.btnConfirm' /> </button>}
                         <button className="btn-booking-cancle"
-                            onClick={closeBookingclose}
+                            onClick={() => this.handleCloseModal()}
                         > <FormattedMessage id='patient.booking-modal.btnCancel' /> </button>
                     </div>
                 </div>

@@ -53,8 +53,13 @@
 
         .section-body {
             .section-customize {
+                .name {
+                    cursor: pointer;
+                }
 
                 .bg-image {
+                    cursor: pointer;
+
                     width: 278px;
                     height: 150px;
 
@@ -63,9 +68,9 @@
                     background-size: cover;
                     background-color: #eee;
 
-                    &.image-specialty {
-                        background: url('./../../assets/Specialty/120331-co-xuong-khop.jpg');
-                    }
+                    // &.image-specialty {
+                    //     background: url('./../../assets/Specialty/120331-co-xuong-khop.jpg');
+                    // }
 
                     &.image-MedicalFacility {
                         background: url('./../../assets/MedicalFacility/093035-benh-vien-thu-cuc-1.jpg');
@@ -139,6 +144,14 @@
             border: 1px solid orange;
             padding: 20px;
             min-height: 230px;
+
+            .doctor-name {
+                padding: 10px 0 0 0;
+            }
+
+            .doctor-name:hover {
+                color: #64b9e5;
+            }
         }
     }
 }
@@ -153,5 +166,15 @@
         justify-content: center;
         align-items: center;
         height: 100%;
+    }
+}
+
+.section-specialty {
+    .specialty-name {
+        padding: 10px 0;
+    }
+
+    .specialty-name:hover {
+        color: #64b9e5;
     }
 }

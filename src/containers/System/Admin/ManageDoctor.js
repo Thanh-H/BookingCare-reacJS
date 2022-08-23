@@ -40,6 +40,9 @@ class ManageDoctor extends Component {
             addressClinic: '',
             nameClinic: '',
             note: '',
+            selectedSpecialty: '',
+            listSpecialty: ''
+
 
         }
     }
@@ -53,6 +56,7 @@ class ManageDoctor extends Component {
         let result = [];
         let { language } = this.props
         if (inputData && inputData.length > 0) {
+
             if (type === 'USER') {
                 inputData.map((item, index) => {
                     let object = {};
@@ -64,7 +68,7 @@ class ManageDoctor extends Component {
                 })
             }
             else {
-                if (type = 'PRICE') {
+                if (type === 'PRICE') {
                     inputData.map((item, index) => {
                         let object = {};
                         let labelVi = `${item.valueVi}`
@@ -74,7 +78,7 @@ class ManageDoctor extends Component {
                         result.push(object)
                     })
                 }
-                if (type = 'PAYMENT' || 'PROVINCE') {
+                if (type === 'PAYMENT' || 'PROVINCE') {
                     inputData.map((item, index) => {
                         let object = {};
                         let labelVi = `${item.valueVi}`
@@ -84,6 +88,15 @@ class ManageDoctor extends Component {
                         result.push(object)
                     })
                 }
+                // if (type === 'SPECIALTY') {
+                //     inputData.map((item, index) => {
+                //         let object = {};
+                //         object.label = item.name
+                //         object.value = item.id
+                //         result.push(object)
+                //     })
+                // }
+
             }
 
 
@@ -101,14 +114,28 @@ class ManageDoctor extends Component {
         }
 
         if (prevProps.allRequiredDoctorInfor !== this.props.allRequiredDoctorInfor || prevProps.language !== this.props.language) {
-            let { payment, price, province } = this.props.allRequiredDoctorInfor
+            let { payment, price, province, } = this.props.allRequiredDoctorInfor
+            let specialty = this.props.allRequiredDoctorInfor.specialty
             let listPrice = this.buildDataInputSelect(price, 'PRICE')
             let listPayment = this.buildDataInputSelect(payment, 'PAYMENT')
             let listProvince = this.buildDataInputSelect(province, 'PROVINCE')
+            // let listSpecialty = this.buildDataInputSelect(specialty, 'SPECIALTY')
+
+            let listSpecialty = []
+            specialty.map((item, index) => {
+                let object = {};
+                object.label = item.name
+                object.value = item.id
+                listSpecialty.push(object)
+            })
+
+
+
             this.setState({
                 listPrice: listPrice,
                 listPayment: listPayment,
-                listProvince: listProvince
+                listProvince: listProvince,
+                listSpecialty: listSpecialty
             })
         }
     }
@@ -134,6 +161,7 @@ class ManageDoctor extends Component {
             addressClinic: this.state.addressClinic,
             nameClinic: this.state.nameClinic,
             note: this.state.note,
+            selectedSpecialty: this.state.selectedSpecialty.value
         })
         this.setState({
             contentMarkdown: '',
@@ -148,7 +176,7 @@ class ManageDoctor extends Component {
         await this.props.fetchDetailDoctor(onChangeSelected.value)
         let data = this.props.detailDoctorRedux
         if (data && data.Markdown && data.Markdown.contentHTML) {
-            let addressClinic, nameClinic, note, selectedPrice, selectedPayment, selectedProvince
+            let addressClinic, nameClinic, note, selectedPrice, selectedPayment, selectedProvince, selectedSpecialty
             if (data.Doctor_infor) {
                 addressClinic = data.Doctor_infor.addressClinic
                 nameClinic = data.Doctor_infor.nameClinic
@@ -189,7 +217,7 @@ class ManageDoctor extends Component {
             })
         }
         else {
-            if (id === 'selectedDoctor')
+            if (id.name === 'selectedDoctor')
                 this.setState({
                     hasOldData: false,
                     contentMarkdown: '',
@@ -215,6 +243,7 @@ class ManageDoctor extends Component {
         })
     }
     render() {
+        console.log('check has old data', this.state.hasOldData)
 
         return (
             <>
@@ -296,6 +325,26 @@ class ManageDoctor extends Component {
                             <input className='form-control'
                                 onChange={(event) => this.handleOnChangeText(event, 'note')}
                                 value={this.state.note}
+                            />
+                        </div>
+                        <div className='form-group col-4'>
+                            <label> <FormattedMessage id='manage-doctor.chose-specialty' /> </label>
+                            <Select
+                                value={this.state.selectedSpecialty}
+                                onChange={this.handleChangeSelect}
+                                options={this.state.listSpecialty}
+                                placeholder={<FormattedMessage id='manage-doctor.chose-specialty' />}
+                                name='selectedSpecialty'
+                            />
+                        </div>
+                        <div className='form-group col-4'>
+                            <label> <FormattedMessage id='manage-doctor.chose-clinic' /> </label>
+                            <Select
+                                // value={this.state.selectedProvince}
+                                // onChange={this.handleChangeSelect}
+                                // options={this.state.listProvince}
+                                placeholder={<FormattedMessage id='manage-doctor.chose-clinic' />}
+                                name='selectedClinic'
                             />
                         </div>
 

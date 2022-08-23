@@ -65,6 +65,7 @@
         "action": "Hành động"
     },
     "homepage": {
+        "popular-specialty": "Chuyên khoa phổ biến",
         "outstanding-doctor": "Bác sĩ nổi bật trong tuần",
         "more-infor": "Xem thêm"
     },
@@ -79,7 +80,9 @@
         "chose-province": "Tỉnh thành",
         "name-clinic": "Tên Phòng khám",
         "address-clinic": "Địa chỉ phòng khám",
-        "note": "Chú thích"
+        "note": "Chú thích",
+        "chose-specialty": "Chọn chuyên khoa",
+        "chose-clinic": "Chọn phòng khám"
     },
     "manage-schedule": {
         "select-doctor": "Chọn bác sĩ",

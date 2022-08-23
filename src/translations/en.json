@@ -65,6 +65,7 @@
         "action": "Action"
     },
     "homepage": {
+        "popular-specialty": "Popular specialty",
         "outstanding-doctor": "Last week's featured doctor",
         "more-infor": "More Infor"
     },
@@ -79,7 +80,9 @@
         "chose-province": "Province",
         "name-clinic": "Clinic's name ",
         "address-clinic": "Clinic's address ",
-        "note": "Note"
+        "note": "Note",
+        "chose-specialty": "Chose specialty",
+        "chose-clinic": "Chose clinic"
     },
     "manage-schedule": {
         "select-doctor": "Select doctor",

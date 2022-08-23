@@ -1,5 +1,8 @@
 .detail-specialty-container {
+    margin-top: 65px;
+
     .description-specialty {
+        border: 1px solid red;
         height: 200px;
     }
 
@@ -19,10 +22,22 @@
 
             .dt-content-left {
                 width: 50%;
+                border-right: 1px solid #ddd;
+
+                .profile-doctor {}
             }
 
             .dt-content-right {
                 width: 50%;
+                margin-left: 8px;
+
+                .doctor-schedule {
+                    border-bottom: 1px solid #ddd;
+                }
+
+                .doctor-extra-infor {
+                    margin-top: 8px;
+                }
 
                 .doctor-schedule-container {
                     border-right: none !important;

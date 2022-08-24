@@ -8,6 +8,7 @@ import { LANGUAGES, USER_ROLE } from '../utils'
 import Header from '../containers/Header/Header';
 import _ from 'lodash'
 import ManageSpecialty from '../containers/System/specialty/ManageSpecialty'
+import ManageClinic from '../containers/System/clinic/ManageClinic';
 
 class System extends Component {
     constructor(props) {
@@ -47,6 +48,7 @@ class System extends Component {
                                 <Route path="/system/user-redux" component={UserRedux} />
                                 <Route path="/system/manage-doctor" component={ManageDoctor} />
                                 <Route path="/system/manage-specialty" component={ManageSpecialty} />
+                                <Route path="/system/manage-clinic" component={ManageClinic} />
                                 <Route component={() => { return (<Redirect to={systemMenuPath} />) }} />
                             </Switch>
                         </div>

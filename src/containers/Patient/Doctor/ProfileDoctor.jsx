@@ -13,7 +13,8 @@ class ProfileDoctor extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            dataProfile: ''
+            dataProfile: '',
+
         }
     }
 
@@ -55,10 +56,16 @@ class ProfileDoctor extends Component {
     }
 
     async componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevProps.doctorId !== this.props.doctorId) {
+            let data = await this.getInforDoctor(this.props.doctorId)
+            this.setState({
+                dataProfile: data
+            })
+        }
     }
     render() {
         let { dataProfile } = this.state;
-        let { language, isShowDescription, dataTime } = this.props
+        let { language, isShowDescription, dataTime, isShowPrice } = this.props
 
         let name = ''
         if (dataProfile && dataProfile.positionData) {
@@ -92,25 +99,26 @@ class ProfileDoctor extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="price">
-                    <FormattedMessage id='patient.booking-modal.price' />
-                    {dataProfile && dataProfile.Doctor_infor && language === LANGUAGES.VI &&
-                        <NumberFormat
-                            className='currency'
-                            value={dataProfile.Doctor_infor.priceData.valueVi}
-                            displayType={'text'}
-                            thousandSeparator={true}
-                            suffix={'VND'}
-                        />}
-                    {dataProfile && dataProfile.Doctor_infor && language === LANGUAGES.EN &&
-                        <NumberFormat
-                            className='currency'
-                            value={dataProfile.Doctor_infor.priceData.valueEn}
-                            displayType={'text'}
-                            thousandSeparator={true}
-                            suffix={'$'}
-                        />}
-                </div>
+                {isShowPrice === true ?
+                    <div className="price">
+                        <FormattedMessage id='patient.booking-modal.price' />
+                        {dataProfile && dataProfile.Doctor_infor && language === LANGUAGES.VI &&
+                            <NumberFormat
+                                className='currency'
+                                value={dataProfile.Doctor_infor.priceData.valueVi}
+                                displayType={'text'}
+                                thousandSeparator={true}
+                                suffix={'VND'}
+                            />}
+                        {dataProfile && dataProfile.Doctor_infor && language === LANGUAGES.EN &&
+                            <NumberFormat
+                                className='currency'
+                                value={dataProfile.Doctor_infor.priceData.valueEn}
+                                displayType={'text'}
+                                thousandSeparator={true}
+                                suffix={'$'}
+                            />}
+                    </div> : <></>}
             </div>
         )
     }

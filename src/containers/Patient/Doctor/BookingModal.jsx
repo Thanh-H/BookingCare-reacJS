@@ -189,6 +189,7 @@ class BookingModal extends Component {
                     <div className="booking-modal-body">
                         <div className="doctor-infor">
                             <ProfileDoctor
+                                isShowPrice={true}
                                 doctorId={doctorId}
                                 isShowDescription={false}
                                 dataTime={dataTime}

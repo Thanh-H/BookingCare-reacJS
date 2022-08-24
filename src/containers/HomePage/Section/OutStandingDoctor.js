@@ -5,9 +5,9 @@ import { FormattedMessage } from 'react-intl'
 import * as actions from '../../../store/actions'
 import { LANGUAGES } from '../../../utils';
 import { withRouter } from 'react-router';
-
+import { getNameSpecialtyByDoctorId } from '../../../services/userService'
 import Slider from 'react-slick';
-import { times } from 'lodash';
+import { map, times } from 'lodash';
 class OutStandingDoctor extends Component {
     constructor(props) {
         super(props)
@@ -16,21 +16,48 @@ class OutStandingDoctor extends Component {
         }
     }
 
-    componentDidUpdate(prevProps, prevState, snapshot) {
+    async componentDidUpdate(prevProps, prevState, snapshot) {
         if (prevProps.topDoctorRedux !== this.props.topDoctorRedux) {
             this.setState({
                 arrDoctors: this.props.topDoctorRedux
             })
+            let res = await getNameSpecialtyByDoctorId('ALL')
+            console.log('check name', res)
+            if (res && res.errCode === 0) {
+                let arrDoctors = this.state.arrDoctors
+                let arrData = res.data
+                arrDoctors.map((item, index) => {
+                    arrData.map((newItem, index) => {
+                        if (item.id === newItem.doctorId) {
+                            item.nameSpecialty = newItem.specialtyData.name
+                            return item
+                        }
+                    })
+
+                })
+                this.setState({ arrDoctors: arrDoctors })
+            }
+            else {
+                console.log('failed')
+            }
+
         }
     }
     componentDidMount() {
         this.props.loadTopDoctors()
+        getNameSpecialtyByDoctorId('ALL')
+        this.setState({
+            arrDoctors: this.props.topDoctorRedux
+        })
+
     }
+
 
     handleViewDetailDoctor = (doctor) => {
         this.props.history.push(`/detail-doctor/${doctor.id}`)
     }
     render() {
+        console.log('checkxxx', this.state)
         let { arrDoctors } = this.state;
         let { language } = this.props;
 
@@ -45,6 +72,7 @@ class OutStandingDoctor extends Component {
                         <Slider {...this.props.settings}>
                             {arrDoctors && arrDoctors.length > 0 &&
                                 arrDoctors.map((item, index) => {
+
                                     let nameVi = `${item.positionData.valueVi} ${item.lastName + " " + item.firstName} `
                                     let nameEn = `${item.positionData.valueEn} ${item.firstName + " " + item.lastName} `
                                     let imageBase64 = ''
@@ -60,7 +88,7 @@ class OutStandingDoctor extends Component {
                                                 </div>
                                                 <div className='position text-center'>
                                                     <div className='doctor-name'>{language === LANGUAGES.EN ? nameEn : nameVi}</div>
-                                                    <div className='name'>cơ xương khớp 1</div>
+                                                    <div className='specialty-name'> {item.nameSpecialty} </div>
                                                 </div>
                                             </div>
                                         </div>

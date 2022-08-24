@@ -111,6 +111,7 @@ class ManageDoctor extends Component {
             this.setState({
                 listDoctor: listDoctor
             })
+
         }
 
         if (prevProps.allRequiredDoctorInfor !== this.props.allRequiredDoctorInfor || prevProps.language !== this.props.language) {
@@ -122,12 +123,14 @@ class ManageDoctor extends Component {
             // let listSpecialty = this.buildDataInputSelect(specialty, 'SPECIALTY')
 
             let listSpecialty = []
-            specialty.map((item, index) => {
-                let object = {};
-                object.label = item.name
-                object.value = item.id
-                listSpecialty.push(object)
-            })
+            if (specialty && specialty.length > 0) {
+                specialty.map((item, index) => {
+                    let object = {};
+                    object.label = item.name
+                    object.value = item.id
+                    listSpecialty.push(object)
+                })
+            }
 
 
 
@@ -175,8 +178,9 @@ class ManageDoctor extends Component {
     handleChangeSelect = async (onChangeSelected, id) => {
         await this.props.fetchDetailDoctor(onChangeSelected.value)
         let data = this.props.detailDoctorRedux
+
         if (data && data.Markdown && data.Markdown.contentHTML) {
-            let addressClinic, nameClinic, note, selectedPrice, selectedPayment, selectedProvince, selectedSpecialty
+            let addressClinic, nameClinic, note, selectedPrice, selectedPayment, selectedProvince
             if (data.Doctor_infor) {
                 addressClinic = data.Doctor_infor.addressClinic
                 nameClinic = data.Doctor_infor.nameClinic
@@ -194,14 +198,8 @@ class ManageDoctor extends Component {
                     return (item && item.value === paymentId)
                 })
             }
-            // else {
-            //     this.setState({
-            //         selectedPrice: '',
-            //         selectedProvince: '',
-            //         selectedPayment: '',
-            //        
-            //     })
-            // }
+            console.log('check state', this.state)
+
             this.setState({
                 hasOldData: true,
                 contentMarkdown: data.Markdown.contentMarkdown,
@@ -213,11 +211,13 @@ class ManageDoctor extends Component {
                 selectedPayment: selectedPayment,
                 addressClinic: addressClinic,
                 nameClinic: nameClinic,
-                note: note
+                note: note,
+
             })
         }
         else {
-            if (id.name === 'selectedDoctor')
+            if (id.name === 'selectedDoctor') {
+                console.log(this.state)
                 this.setState({
                     hasOldData: false,
                     contentMarkdown: '',
@@ -227,6 +227,7 @@ class ManageDoctor extends Component {
                     nameClinic: '',
                     note: '',
                 })
+            }
         }
         let copyState = { ...this.state }
         copyState[id.name] = onChangeSelected
@@ -243,7 +244,7 @@ class ManageDoctor extends Component {
         })
     }
     render() {
-        console.log('check has old data', this.state.hasOldData)
+        console.log('check all required', this.props.allRequiredDoctorInfor)
 
         return (
             <>

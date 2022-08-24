@@ -66,6 +66,7 @@
     },
     "homepage": {
         "popular-specialty": "Popular specialty",
+        "Outstanding-medical-facility": "Outstanding medical facility",
         "outstanding-doctor": "Last week's featured doctor",
         "more-infor": "More Infor"
     },
@@ -88,6 +89,18 @@
         "select-doctor": "Select doctor",
         "title": "Manage the doctor's examination plan",
         "select-date": "Select date",
+        "save": "Save"
+    },
+    "manage-specialty": {
+        "title": "Manage specialty",
+        "name": "Specialty's name ",
+        "image": "Specialty's image",
+        "save": "Save"
+    },
+    "manage-clinic": {
+        "title": "Manage clinic",
+        "name": "Clinic's name ",
+        "image": "Clinic's image",
         "save": "Save"
     },
     "patient": {

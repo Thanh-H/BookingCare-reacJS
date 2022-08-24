@@ -4,7 +4,7 @@ import {
     getAllUserService, deleteUserService,
     editUserService, getTopDoctorHomeService, getAllDoctorService,
     saveDetailDoctorService, getDetailDoctorService, saveBulkScheduleDoctorSevice,
-    getScheduleDoctorByDateSevice, getAllSpecialty
+    getScheduleDoctorByDateSevice, getAllSpecialty, getAllClinic
 } from '../../services/userService'
 import { ToastContainer, toast } from 'react-toastify';
 
@@ -397,11 +397,13 @@ export const fetchRequiredDoctorInfor = () => {
             let resPayment = await getAllCodeService('PAYMENT')
             let resProvince = await getAllCodeService('PROVINCE')
             let resSpecialty = await getAllSpecialty()
+            let resClinic = await getAllClinic()
             let dataDoctorRequired = {
                 price: resPrice.data,
                 payment: resPayment.data,
                 province: resProvince.data,
-                specialty: resSpecialty.data
+                specialty: resSpecialty.data,
+                clinic: resClinic.data
             }
             if (resPrice && resPrice.errCode === 0 && resPayment && resPayment.errCode == 0
                 && resProvince && resProvince.errCode === 0 && resSpecialty && resSpecialty.errCode === 0) {

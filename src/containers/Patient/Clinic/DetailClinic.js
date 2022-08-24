@@ -34,7 +34,7 @@ class DetailClinic extends Component {
             let id = this.props.match.params.id
             let res = await getDetailClinicById(id, 'ALL')
 
-            console.log(res)
+            console.log('check resssss', res)
             if (res && res.errCode === 0) {
                 let data = res.data;
                 let arrDoctorId = []
@@ -98,11 +98,12 @@ class DetailClinic extends Component {
                             {dataDetailClinic && !_.isEmpty(dataDetailClinic) &&
                                 <div dangerouslySetInnerHTML={{ __html: dataDetailClinic.descriptionHTML }}></div>}
                         </div>
+                        <div className='mt-5 title'>Danh sách sách các bác sĩ ở trong bệnh viện</div>
 
                         {arrDoctorId && arrDoctorId.length > 0 &&
                             arrDoctorId.map((item, index) => {
                                 return (
-                                    <div className='each-doctor' key={index}>
+                                    <div className='each-doctor mt-3' key={index}>
                                         <div className='dt-content-left'>
                                             <div className='profile-doctor'>
                                                 <ProfileDoctor

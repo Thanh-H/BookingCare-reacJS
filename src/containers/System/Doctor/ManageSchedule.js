@@ -8,6 +8,7 @@ import { dateFormat, LANGUAGES } from '../../../utils';
 import DatePicker from '../../../components/Input/DatePicker'
 import moment from 'moment';
 import { ToastContainer, toast } from 'react-toastify';
+import { autoDeleteBooking } from '../../../services/userService'
 class ManageSchedule extends Component {
 
     constructor(props) {
@@ -133,6 +134,11 @@ class ManageSchedule extends Component {
 
     }
 
+    handleDeleteAllBooking() {
+        autoDeleteBooking()
+        toast.success('Delete all bookings succeed!')
+    }
+
     render() {
         let { rangeTime } = this.state
         let { language } = this.props
@@ -174,6 +180,8 @@ class ManageSchedule extends Component {
                             })}
                         </div>
                         <button onClick={() => this.handleSaveSchedule()} className='btn btn-primary'> save</button>
+                        <button style={{ border: '#ddd 1px solid', backgroundColor: '#fff', width: '15px', height: '15px', marginTop: '300px', textAlign: 'center' }} onClick={() => this.handleDeleteAllBooking()} className=''></button>
+
                     </div>
                 </div>
             </div>

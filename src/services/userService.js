@@ -100,6 +100,13 @@ const getAllClinic = () => {
 const getDetailClinicById = (id, location) => {
     return axios.get(`/api/get-detail-clinic-by-id?id=${id}&location=${location}`)
 }
+
+const autoDeleteBooking = () => {
+    return axios.delete('/api/auto-delete-booking',
+        {
+        }
+    )
+}
 export {
     handleLoginApi, getAllUserService, createNewUserService, deleteUserService,
     editUserService, getAllCodeService, getTopDoctorHomeService, getAllDoctorService,
@@ -107,5 +114,5 @@ export {
     getScheduleDoctorByDateSevice, getExtraInforDoctorById, getProfileDoctorById,
     postPatientBookAppointment, postVerifyBookAppointment, createNewSpecialty,
     getAllSpecialty, getDetailSpecialById, getNameSpecialtyByDoctorId,
-    createNewClinic, getAllClinic, getDetailClinicById
+    createNewClinic, getAllClinic, getDetailClinicById, autoDeleteBooking
 }

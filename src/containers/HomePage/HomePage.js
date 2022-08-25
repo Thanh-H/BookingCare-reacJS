@@ -37,6 +37,7 @@ function SamplePrevArrow(props) {
 
 class HomePage extends Component {
 
+
     render() {
 
         const { processLogout } = this.props;

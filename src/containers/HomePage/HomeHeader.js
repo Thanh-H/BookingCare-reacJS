@@ -11,7 +11,8 @@ import { withRouter } from 'react-router'
 
 class HomeHeader extends Component {
     state = {
-        isShowBanner: true
+        isShowBanner: true,
+        isShowPlaceholder: true
     }
 
     changeLanguage = (dataLanguage) => {
@@ -21,7 +22,22 @@ class HomeHeader extends Component {
     handleRedirectHomePage = () => {
         this.props.history.push(`/home`)
     }
+    async componentDidUpdate() {
+
+    }
+    handleShowHidePlaceholder(e) {
+        if (e.target.value !== '')
+            this.setState({
+                isShowPlaceholder: false
+            })
+        else {
+            this.setState({
+                isShowPlaceholder: true
+            })
+        }
+    }
     render() {
+
         let { language } = this.props
         return (
             <div className='home-header-container'>
@@ -61,10 +77,15 @@ class HomeHeader extends Component {
                         <div className="content-up">
                             <div className="title1"><FormattedMessage id="banner.title1" /></div>
                             <div className="title2"><FormattedMessage id="banner.title2" /></div>
+
                             <div className="search">
+
                                 <i className="fas fa-search"></i>
-                                <input type="text" placeholder="Tìm chuyên khoa khám bệnh" /> </div>
+                                <input onInput={(e) => this.handleShowHidePlaceholder(e)} type="text" />
+                            </div>
+                            {this.state.isShowPlaceholder === true ? <span className={this.props.language === LANGUAGES.VI ? 'change-placeholder-vi' : 'change-placeholder-en'}></span> : ''}
                         </div>
+
 
                         <div className="content-down">
                             <div className="options">

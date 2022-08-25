@@ -157,6 +157,69 @@
                 border: none;
                 outline: none;
             }
+
+
+        }
+
+        .change-placeholder-vi {
+            position: relative;
+            left: 38%;
+            top: -35px;
+            pointer-events: none;
+        }
+
+        .change-placeholder-vi:before {
+            content: '';
+            animation: animateVi infinite 8s !important;
+            font-size: 16px;
+            z-index: 20;
+            text-align: center;
+            color: #666;
+        }
+
+        .change-placeholder-en {
+            position: relative;
+            left: 38%;
+            top: -35px;
+            pointer-events: none;
+        }
+
+        .change-placeholder-en:before {
+            content: '';
+            animation: animateEn infinite 8s !important;
+            font-size: 16px;
+            z-index: 20;
+            text-align: center;
+            color: #666;
+        }
+
+
+        @keyframes animateVi {
+            0% {
+                content: 'Tìm bác sĩ';
+            }
+
+            50% {
+                content: 'Tìm lý do khám';
+            }
+
+            100% {
+                content: 'Tìm chuyên khoa';
+            }
+        }
+
+        @keyframes animateEn {
+            0% {
+                content: 'Find a doctor';
+            }
+
+            50% {
+                content: 'Find a reason to see a doctor';
+            }
+
+            100% {
+                content: 'Find a medical specialty';
+            }
         }
     }
 

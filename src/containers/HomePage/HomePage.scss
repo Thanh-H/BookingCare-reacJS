@@ -29,7 +29,6 @@
                 font-size: 22px;
                 font-weight: 600;
 
-
             }
 
             .btn-section {
@@ -53,6 +52,11 @@
 
         .section-body {
             .section-customize {
+                display: flex !important;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
                 .name {
                     cursor: pointer;
                 }
@@ -60,7 +64,7 @@
                 .bg-image {
                     cursor: pointer;
 
-                    width: 278px;
+                    width: 280px;
                     height: 150px;
 
                     background-position: center center;
@@ -68,16 +72,7 @@
                     background-size: cover;
                     background-color: #eee;
 
-                    // &.image-specialty {
-                    //     background: url('./../../assets/Specialty/120331-co-xuong-khop.jpg');
-                    // }
-
-                    &.image-MedicalFacility {
-                        background: url('./../../assets/MedicalFacility/093035-benh-vien-thu-cuc-1.jpg');
-                    }
-
                     &.image-outstanding-doctor {
-                        // background: url('./../../assets/OutStandingDoctor/goku\ ssj\ blue.webp');
                         border-radius: 50%;
                         width: 120px;
                         height: 120px;
@@ -139,11 +134,13 @@
     .section-customize {
         padding: 5px;
 
+
         .customize-border {
+            min-width: 280px;
             cursor: pointer;
-            border: 1px solid orange;
-            padding: 20px;
-            min-height: 250px;
+            border: 1px solid #ddd;
+            padding: 8px;
+            min-height: 230px;
 
             .doctor-name {
                 padding: 10px 0 0 0;
@@ -177,7 +174,11 @@
 
 .section-specialty {
     .specialty-name {
-        padding: 10px 0;
+        width: 100%;
+        margin-top: 8px;
+        ;
+        cursor: pointer;
+        text-align: center;
     }
 
     .specialty-name:hover {
@@ -189,6 +190,8 @@
 
     .section-customize {
         display: flex !important;
+        flex-direction: row !important;
+        align-items: flex-start !important;
 
         .bg-image {
             height: 180px !important;
@@ -224,4 +227,39 @@
 
         }
     }
+}
+
+.custom-next-arrow {
+    padding-left: 10px;
+    right: 0;
+    border-radius: 100px 0 0 100px;
+}
+
+.custom-prev-arrow {
+    padding-right: 10px;
+    border-radius: 0 100px 100px 0;
+    left: 0;
+}
+
+.custom-next-arrow:hover,
+.custom-prev-arrow:hover {
+    color: red;
+}
+
+.custom-prev-arrow,
+.custom-next-arrow {
+
+    position: absolute;
+    top: 50%;
+    border: none;
+    z-index: 1;
+    font-size: 25px;
+    background-color: rgba(227, 229, 233, 0.87);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.4);
+    width: 30px;
+    height: 60px;
+    line-height: 60px;
+    transform: translateY(-55%);
+    color: #343a40;
+    cursor: pointer;
 }

@@ -12,6 +12,29 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 
+
+function SampleNextArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className=' custom-next-arrow fas fa-chevron-right'
+
+            onClick={onClick}
+        />
+    );
+}
+
+function SamplePrevArrow(props) {
+    const { className, style, onClick } = props;
+    return (
+        <div
+            className='custom-prev-arrow fas fa-chevron-left'
+
+            onClick={onClick}
+        />
+    );
+}
+
 class HomePage extends Component {
 
     render() {
@@ -23,6 +46,8 @@ class HomePage extends Component {
             speed: 500,
             slidesToShow: 4,
             slidesToScroll: 1,
+            nextArrow: <SampleNextArrow />,
+            prevArrow: <SamplePrevArrow />
         };
 
         return (
